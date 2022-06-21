@@ -10,8 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 @Data
-public class HelloWorldEntity {
+public class LibraryEntity {
     @Id
     private Long id;
-
 }
