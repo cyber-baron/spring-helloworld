@@ -1,6 +1,6 @@
 package com.example.springhelloworld.service;
 
-import com.example.springhelloworld.entity.Library;
+import com.example.springhelloworld.entity.Book;
 import com.example.springhelloworld.repository.LibraryRepository;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public Optional<Library> getLibrary() {
+    public Optional<Book> getBook() {
         return libraryRepository.findBookById(ids);
     }
 }
