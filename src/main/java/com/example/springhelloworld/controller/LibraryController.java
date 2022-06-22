@@ -1,6 +1,6 @@
 package com.example.springhelloworld.controller;
 
-import com.example.springhelloworld.entity.Library;
+import com.example.springhelloworld.entity.Book;
 import com.example.springhelloworld.service.LibraryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ public class LibraryController {
     private final LibraryService libraryService;
 
     @RequestMapping(value = "/library", method = RequestMethod.GET)
-    public Optional<Library> getLibrary() {
-        return libraryService.getLibrary();
+    public Optional<Book> getBook() {
+        return libraryService.getBook();
     }
 }
