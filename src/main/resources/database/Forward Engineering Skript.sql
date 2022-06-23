@@ -1,108 +1,108 @@
--- ************************************** "Читатель"
+-- ************************************** Book
 
-CREATE TABLE "Читатель"
+CREATE TABLE Book
 (
- "ID_Пользователя"       numeric(18,0) NOT NULL,
- "Имя_Пользователя"      char(50) NOT NULL,
- "Фамилия_Пользователя"  char(50) NOT NULL,
- "Отчество_Пользователя" char(50) NULL,
- "Номер_Телефона"        numeric(18,0) NOT NULL,
- CONSTRAINT PK_43 PRIMARY KEY ( "ID_Пользователя" )
+ Book_ID           numeric(18,0) NOT NULL,
+ Book_Name         varchar(30) NOT NULL,
+ Book_Publish_Date int(4) NOT NULL,
+ CONSTRAINT PK_5 PRIMARY KEY ( Book_ID )
 );
 
--- ************************************** "Книга"
+-- ************************************** "Author Base"
 
-CREATE TABLE "Книга"
+CREATE TABLE "Author Base"
 (
- "ID_Книги"    numeric(18,0) NOT NULL,
- "Название"    char(50) NOT NULL,
- "Год_Издания" int NOT NULL,
- CONSTRAINT PK_5 PRIMARY KEY ( "ID_Книги" )
+ Author_ID          numeric(18,0) NOT NULL,
+ Author_Name        varchar(30) NOT NULL,
+ Author_Surname     varchar(30) NOT NULL,
+ Author_Second_Name varchar(30) NULL,
+ Author_Birth_Date  int(4) NOT NULL,
+ CONSTRAINT PK_28 PRIMARY KEY ( Author_ID )
 );
 
--- ************************************** "База Жанров"
+-- ************************************** "Book-Authors"
 
-CREATE TABLE "База Жанров"
+CREATE TABLE "Book-Authors"
 (
- "ID_Жанров"      numeric(18,0) NOT NULL,
- "Название_Жанра" char(50) NOT NULL,
- CONSTRAINT PK_10 PRIMARY KEY ( "ID_Жанров" )
+ Book_ID   numeric(18,0) NOT NULL,
+ Author_ID numeric(18,0) NOT NULL,
+ CONSTRAINT PK_40 PRIMARY KEY ( Book_ID, Author_ID ),
+ CONSTRAINT FK_34 FOREIGN KEY ( Book_ID ) REFERENCES Book ( Book_ID ),
+ CONSTRAINT FK_37 FOREIGN KEY ( Author_ID ) REFERENCES "Author Base" ( Author_ID )
 );
 
--- ************************************** "Книга-Жанр"
-
-CREATE TABLE "Книга-Жанр"
+CREATE INDEX FK_36 ON "Book-Authors"
 (
- "ID_Книги"  numeric(18,0) NOT NULL,
- "ID_Жанров" numeric(18,0) NOT NULL,
- CONSTRAINT PK_14 PRIMARY KEY ( "ID_Книги", "ID_Жанров" ),
- CONSTRAINT FK_20 FOREIGN KEY ( "ID_Книги" ) REFERENCES "Книга" ( "ID_Книги" ),
- CONSTRAINT FK_23 FOREIGN KEY ( "ID_Жанров" ) REFERENCES "База Жанров" ( "ID_Жанров" )
+ Book_ID
 );
 
-CREATE INDEX FK_22 ON "Книга-Жанр"
+CREATE INDEX FK_39 ON "Book-Authors"
 (
- "ID_Книги"
+ Author_ID
 );
 
-CREATE INDEX FK_25 ON "Книга-Жанр"
+-- ************************************** "Genres Base"
+
+CREATE TABLE "Genres Base"
 (
- "ID_Жанров"
+ Genre_ID   numeric(18,0) NOT NULL,
+ Genre_Name varchar(30) NOT NULL,
+ CONSTRAINT PK_10 PRIMARY KEY ( Genre_ID )
 );
 
--- ************************************** "База Авторов"
+-- ************************************** "Book-Genres"
 
-CREATE TABLE "База Авторов"
+CREATE TABLE "Book-Genres"
 (
- "ID_Автора"       char(50) NOT NULL,
- "Имя_Автора"      char(50) NOT NULL,
- "Фамилия_Автора"  char(50) NOT NULL,
- "Отчество_Автора" char(50) NULL,
- "Год_Рождения"    int NOT NULL,
- CONSTRAINT PK_28 PRIMARY KEY ( "ID_Автора" )
+ Book_ID  numeric(18,0) NOT NULL,
+ Genre_ID numeric(18,0) NOT NULL,
+ CONSTRAINT PK_14 PRIMARY KEY ( Book_ID, Genre_ID ),
+ CONSTRAINT FK_20 FOREIGN KEY ( Book_ID ) REFERENCES Book ( Book_ID ),
+ CONSTRAINT FK_23 FOREIGN KEY ( Genre_ID ) REFERENCES "Genres Base" ( Genre_ID )
 );
 
--- ************************************** "Книга-Автор"
-
-CREATE TABLE "Книга-Автор"
+CREATE INDEX FK_22 ON "Book-Genres"
 (
- "ID_Книги"  numeric(18,0) NOT NULL,
- "ID_Автора" char(50) NOT NULL,
- CONSTRAINT PK_40 PRIMARY KEY ( "ID_Книги", "ID_Автора" ),
- CONSTRAINT FK_34 FOREIGN KEY ( "ID_Книги" ) REFERENCES "Книга" ( "ID_Книги" ),
- CONSTRAINT FK_37 FOREIGN KEY ( "ID_Автора" ) REFERENCES "База Авторов" ( "ID_Автора" )
+ Book_ID
 );
 
-CREATE INDEX FK_36 ON "Книга-Автор"
+CREATE INDEX FK_25 ON "Book-Genres"
 (
- "ID_Книги"
+ Genre_ID
 );
 
-CREATE INDEX FK_39 ON "Книга-Автор"
+-- ************************************** "User"
+
+CREATE TABLE "User"
 (
- "ID_Автора"
+ User_ID           numeric(18,0) NOT NULL,
+ User_Name         varchar(30) NOT NULL,
+ User_Surname      varchar(30) NOT NULL,
+ User_Second_Name  varchar(30) NULL,
+ User_Phone_Number int NOT NULL,
+ CONSTRAINT PK_43 PRIMARY KEY ( User_ID )
 );
 
--- ************************************** "Выдача Книг"
+-- ************************************** "Book Order"
 
-CREATE TABLE "Выдача Книг"
+CREATE TABLE "Book Order"
 (
- "ID_Выдачи"       numeric(18,0) NOT NULL,
- "ID_Пользователя" numeric(18,0) NOT NULL,
- "ID_Книги"        numeric(18,0) NOT NULL,
- "Дата_Выдачи"     date NOT NULL,
- "Дата_Возврата"   date NOT NULL,
- CONSTRAINT PK_50 PRIMARY KEY ( "ID_Выдачи" ),
- CONSTRAINT FK_53 FOREIGN KEY ( "ID_Пользователя" ) REFERENCES "Читатель" ( "ID_Пользователя" ),
- CONSTRAINT FK_56 FOREIGN KEY ( "ID_Книги" ) REFERENCES "Книга" ( "ID_Книги" )
+ Oreder_ID        numeric(18,0) NOT NULL,
+ User_ID          numeric(18,0) NOT NULL,
+ Book_ID          numeric(18,0) NOT NULL,
+ Order_Start_Date date NOT NULL,
+ Order_End_Date   date NOT NULL,
+ CONSTRAINT PK_50 PRIMARY KEY ( Oreder_ID ),
+ CONSTRAINT FK_53 FOREIGN KEY ( User_ID ) REFERENCES "User" ( User_ID ),
+ CONSTRAINT FK_56 FOREIGN KEY ( Book_ID ) REFERENCES Book ( Book_ID )
 );
 
-CREATE INDEX FK_55 ON "Выдача Книг"
+CREATE INDEX FK_55 ON "Book Order"
 (
- "ID_Пользователя"
+ User_ID
 );
 
-CREATE INDEX FK_58 ON "Выдача Книг"
+CREATE INDEX FK_58 ON "Book Order"
 (
- "ID_Книги"
+ Book_ID
 );
