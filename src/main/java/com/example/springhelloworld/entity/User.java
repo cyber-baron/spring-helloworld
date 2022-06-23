@@ -3,16 +3,27 @@ package com.example.springhelloworld.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
-@Table(name="Читатель")
+@Table(name="User")
 public class User {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="USER_ID", nullable=false, unique=true)
     public int userId;
+
+    @Column(name="USER_NAME", nullable=false, unique=false)
     private String userName;
+    @Column(name="USER_SURNAME", nullable=false, unique=false)
     private String userSurname;
+    @Column(name="USER_SECOND_NAME", nullable=true, unique=false)
     private String userSecondName;
-    private int phoneNumber;
+    @Column(name="USER_PHONE_NUMBER", nullable=false, unique=false)
+    private int userPhoneNumber;
+
+    @OneToMany (targetEntity = BookOrder.class, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<BookOrder> bookOrdersList;
 }
