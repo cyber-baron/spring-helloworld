@@ -1,27 +1,23 @@
-package com.example.springhelloworld.service;
+package com.example.springhelloworld.service.impl;
 
 import com.example.springhelloworld.entity.Book;
 import com.example.springhelloworld.repository.LibraryRepository;
+import com.example.springhelloworld.service.LibraryService;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-@Getter
-@Setter
+@RequiredArgsConstructor
 public class LibraryServiceImpl implements LibraryService {
 
     private final LibraryRepository libraryRepository;
-    private Long ids = 3L;
-
-    public LibraryServiceImpl(LibraryRepository algorithmRepository) {
-        this.libraryRepository = algorithmRepository;
-    }
 
     @Override
-    public Optional<Book> getBook() {
-        return libraryRepository.findBookById(ids);
+    public Book getBook(Long bookId) {
+        return libraryRepository.findBookById(bookId);
     }
 }
