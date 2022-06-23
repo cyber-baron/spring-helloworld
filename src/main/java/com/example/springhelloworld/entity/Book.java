@@ -11,10 +11,11 @@ import java.util.Set;
 @Data
 @Table(name="Book")
 public class Book {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="BOOK_ID", nullable=false, unique=true)
-    public int bookId;
+    public Long bookId;
 
     @Column(name="BOOK_NAME", nullable=false, unique=false)
     private char bookName;
