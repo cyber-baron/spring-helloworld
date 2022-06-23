@@ -51,12 +51,3 @@ $ cd pgadmin4
 ```css
 $ pgadmin4
 ```
-
-## Результаты подключения
-<p align="center">
-  <img src="https://github.com/cyber-baron/spring-helloworld/blob/master/screens/base.jpg" alt="base.jpg"/>
-</p>
-
-<p align="center">
-  <img src="https://github.com/cyber-baron/spring-helloworld/blob/master/screens/user.jpg" alt="user.jpg"/>
-</p>
