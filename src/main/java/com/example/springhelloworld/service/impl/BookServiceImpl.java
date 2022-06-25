@@ -14,7 +14,6 @@ public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
 
-
     @Override
     public Book findById(Long bookId) {
         return bookRepository.findById(bookId).orElseThrow(() -> new EntityNotFoundException("Книга с идентификатором: " + bookId + " не найдена"));

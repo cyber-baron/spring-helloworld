@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/library")
+@RequestMapping("/books")
 public class BookController {
 
     private final LibraryService libraryService;
@@ -57,6 +57,4 @@ public class BookController {
     public void updateBook(@PathVariable Long bookId) {
         bookService.delete(bookId);
     }
-
-
 }
