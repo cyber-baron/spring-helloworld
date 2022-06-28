@@ -1,8 +1,6 @@
 package com.example.springhelloworld.controller;
 
-import com.example.springhelloworld.entity.Book;
 import com.example.springhelloworld.entity.User;
-import com.example.springhelloworld.service.BookService;
 import com.example.springhelloworld.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,18 +20,18 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<User> createBook(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.create(user));
     }
 
     @PutMapping("/update")
-    public ResponseEntity<User> updateBook(@RequestBody User user) {
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.update(user));
     }
 
     @DeleteMapping("/delete/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBook(@PathVariable Long userId) {
+    public void updateUser(@PathVariable Long userId) {
         userService.delete(userId);
     }
 }

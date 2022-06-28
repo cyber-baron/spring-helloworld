@@ -2,7 +2,6 @@ package com.example.springhelloworld.controller;
 
 import com.example.springhelloworld.entity.Book;
 import com.example.springhelloworld.service.BookService;
-import com.example.springhelloworld.service.LibraryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/books")
 public class BookController {
 
-    private final LibraryService libraryService;
     private final BookService bookService;
 
     //First version
     @GetMapping("/get/{bookId}")
     public ResponseEntity<Book> getBook(@PathVariable Long bookId) {
-        return ResponseEntity.ok(libraryService.getBook(bookId));
+        return ResponseEntity.ok(bookService.getBook(bookId));
     }
 
     //Hiber

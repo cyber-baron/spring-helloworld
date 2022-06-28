@@ -2,7 +2,6 @@ package com.example.springhelloworld.service.impl;
 
 import com.example.springhelloworld.entity.User;
 import com.example.springhelloworld.repository.UserRepository;
-import com.example.springhelloworld.service.BookService;
 import com.example.springhelloworld.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,9 +26,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User user) {
-        User updateUser = userRepository.findByUserId(user.getUserId());
+        User updateUser = userRepository.findByUserId((long) user.getUserId());
         updateUser.setUserName(user.getUserName());
         updateUser.setUserSurname(user.getUserSurname());
+        updateUser.setUserSecondName(user.getUserSecondName());
+        updateUser.setUserPhoneNumber(user.getUserPhoneNumber());
 
         return userRepository.save(updateUser);
     }

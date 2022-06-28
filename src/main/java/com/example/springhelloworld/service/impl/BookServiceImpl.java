@@ -15,6 +15,11 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
     @Override
+    public Book getBook(Long bookId) {
+        return null;
+    }
+
+    @Override
     public Book findById(Long bookId) {
         return bookRepository.findById(bookId).orElseThrow(() -> new EntityNotFoundException("Книга с идентификатором: " + bookId + " не найдена"));
     }
@@ -38,8 +43,8 @@ public class BookServiceImpl implements BookService {
     public Book update(Book book) {
         Book updateBook = bookRepository.findByBookId(book.getBookId());
         updateBook.setBookName(book.getBookName());
-        updateBook.setAuthor(book.getAuthor());
-        // и т.д.
+        updateBook.setBookPublishDate(book.getBookPublishDate());
+
         return bookRepository.save(updateBook);
     }
 
@@ -47,6 +52,4 @@ public class BookServiceImpl implements BookService {
     public void delete(Long bookId) {
         bookRepository.delete(bookRepository.findByBookId(bookId));
     }
-
-
 }
