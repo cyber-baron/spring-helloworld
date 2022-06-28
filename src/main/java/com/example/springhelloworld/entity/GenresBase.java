@@ -21,6 +21,7 @@ public class GenresBase {
     @ManyToMany
     @JoinTable(
             name = "Genres Base",
-            joinColumns = @JoinColumn(name = "GENRE_ID"))
+            joinColumns = @JoinColumn(name = "GENRE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "GENRE_ID"))
     Set<Book> bookGenres;
 }
