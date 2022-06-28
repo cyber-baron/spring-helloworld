@@ -4,6 +4,8 @@ import com.example.springhelloworld.entity.Book;
 
 public interface BookService {
 
+    Book getBook(Long bookId);
+
     Book findById(Long bookId);
 
     Book findByIdNativeQuery(Long bookId);
@@ -11,8 +13,6 @@ public interface BookService {
     Book findByIdQuery(Long bookId);
 
     Book create(Book book);
-
     Book update(Book book);
-
     void delete(Long bookId);
 }
