@@ -9,11 +9,11 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="Book")
+@Table(name="BOOK", schema="public")
 public class Book {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="BOOK_ID", nullable=false, unique=true)
     public Long bookId;
 

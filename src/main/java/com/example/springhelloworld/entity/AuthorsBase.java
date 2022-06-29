@@ -8,10 +8,11 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="Author Base")
+@Table(name="AUTHORS_BASE", schema="public" )
 public class AuthorsBase {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="AUTHOR_ID", nullable=false, unique=true)
     public int authorId;
 
@@ -27,8 +28,11 @@ public class AuthorsBase {
     private Date authorBirthDate;
 
     @ManyToMany
-    @JoinTable(
-            name = "Author Base",
-            joinColumns = @JoinColumn(name = "AUTHOR_ID"))
+    @JoinTable
+            (
+            name = "BOOK_AUTHORS",
+            joinColumns = @JoinColumn(name = "AUTHOR_ID", referencedColumnName = "AUTHOR_ID"),
+            inverseJoinColumns = @JoinColumn(name = "BOOK_ID", referencedColumnName = "BOOK_ID")
+            )
     Set<Book> bookAuthors;
 }
