@@ -7,11 +7,11 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name="User")
+@Table(name="USERS", schema="public")
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="USER_ID", nullable=false, unique=true)
     public int userId;
 

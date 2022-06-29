@@ -7,11 +7,11 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="Genres Base")
+@Table(name="GENRES_BASE", schema="public")
 public class GenresBase {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="GENRE_ID", nullable=false, unique=true)
     public int genreId;
 
@@ -19,9 +19,11 @@ public class GenresBase {
     private String genreName;
 
     @ManyToMany
-    @JoinTable(
-            name = "Genres Base",
-            joinColumns = @JoinColumn(name = "GENRE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "GENRE_ID"))
+    @JoinTable
+            (
+            name = "BOOK_GENRES",
+            joinColumns = @JoinColumn(name = "GENRE_ID", referencedColumnName = "GENRE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "BOOK_ID", referencedColumnName = "BOOK_ID")
+            )
     Set<Book> bookGenres;
 }
