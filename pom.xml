@@ -61,6 +61,24 @@
             <version>3.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>ru.r2cloud.openapi</groupId>
+            <artifactId>jsp-openapi</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micronaut.openapi</groupId>
+            <artifactId>micronaut-openapi</artifactId>
+            <version>4.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.9</version>
+        </dependency>
+
     </dependencies>
 
 </project>

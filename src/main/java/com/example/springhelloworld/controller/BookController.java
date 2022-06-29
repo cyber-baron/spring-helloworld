@@ -27,7 +27,7 @@ public class BookController {
     }
 
     //NativeQuery
-    @GetMapping("/find/native-query/{bookId}")
+    @GetMapping("/find/native/{bookId}")
     public ResponseEntity<Book> findBookByIdNativeQuery(@PathVariable Long bookId) {
         return ResponseEntity.ok(bookService.findByIdNativeQuery(bookId));
     }

@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="BOOK", schema="public")
+@Table(name="BOOK")
 public class Book {
 
     @Id
@@ -17,9 +17,9 @@ public class Book {
     @Column(name="BOOK_ID", nullable=false, unique=true)
     public Long bookId;
 
-    @Column(name="BOOK_NAME", nullable=false, unique=false)
+    @Column(name="BOOK_NAME", nullable=false)
     private char bookName;
-    @Column(name="BOOK_PUBLISH_DATE", nullable=false, unique=false)
+    @Column(name="BOOK_PUBLISH_DATE", nullable=false)
     private int bookPublishDate;
 
     @ManyToMany(mappedBy = "bookAuthors")

@@ -6,17 +6,17 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name="BOOK_ORDER", schema="public")
+@Table(name="BOOK_ORDER")
 public class BookOrder {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="ORDER_ID", nullable=false, unique=true)
-    public int orderId;
+    public Long orderId;
 
-    @Column(name="ORDER_START_DATE", nullable=false, unique=false)
+    @Column(name="ORDER_START_DATE", nullable=false)
     private String orderStartDate;
-    @Column(name="ORDER_END_DATE", nullable=false, unique=false)
+    @Column(name="ORDER_END_DATE", nullable=false)
     private String orderEndDate;
 
     @ManyToOne
