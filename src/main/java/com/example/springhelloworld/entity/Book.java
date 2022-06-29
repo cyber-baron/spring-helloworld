@@ -18,7 +18,7 @@ public class Book {
     public Long bookId;
 
     @Column(name="BOOK_NAME", nullable=false)
-    private char bookName;
+    private String bookName;
     @Column(name="BOOK_PUBLISH_DATE", nullable=false)
     private int bookPublishDate;
 
