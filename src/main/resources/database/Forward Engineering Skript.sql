@@ -1,108 +1,108 @@
--- ************************************** Book
+-- ************************************** "BOOK"
 
-CREATE TABLE Book
+CREATE TABLE "BOOK"
 (
- Book_ID           numeric(18,0) NOT NULL,
- Book_Name         varchar(30) NOT NULL,
- Book_Publish_Date int(4) NOT NULL,
- CONSTRAINT PK_5 PRIMARY KEY ( Book_ID )
+ BOOK_ID           bigint NOT NULL,
+ BOOK_NAME         varchar NOT NULL,
+ BOOK_PUBLISH_DATE int NOT NULL,
+ CONSTRAINT PK_5 PRIMARY KEY ( BOOK_ID )
 );
 
--- ************************************** "Author Base"
+-- ************************************** "AUTHORS_BASE"
 
-CREATE TABLE "Author Base"
+CREATE TABLE "AUTHORS_BASE"
 (
- Author_ID          numeric(18,0) NOT NULL,
- Author_Name        varchar(30) NOT NULL,
- Author_Surname     varchar(30) NOT NULL,
- Author_Second_Name varchar(30) NULL,
- Author_Birth_Date  int(4) NOT NULL,
- CONSTRAINT PK_28 PRIMARY KEY ( Author_ID )
+ AUTHOR_ID          bigint NOT NULL,
+ AUTHOR_NAME        varchar NOT NULL,
+ AUTHOR_SURNAME     varchar NOT NULL,
+ AUTHOR_SECOND_NAME varchar NULL,
+ AUTHOR_BIRTH_DATE  int NOT NULL,
+ CONSTRAINT PK_28 PRIMARY KEY ( AUTHOR_ID )
 );
 
--- ************************************** "Book-Authors"
+-- ************************************** "BOOK_AUTHORS"
 
-CREATE TABLE "Book-Authors"
+CREATE TABLE "BOOK_AUTHORS"
 (
- Book_ID   numeric(18,0) NOT NULL,
- Author_ID numeric(18,0) NOT NULL,
- CONSTRAINT PK_40 PRIMARY KEY ( Book_ID, Author_ID ),
- CONSTRAINT FK_34 FOREIGN KEY ( Book_ID ) REFERENCES Book ( Book_ID ),
- CONSTRAINT FK_37 FOREIGN KEY ( Author_ID ) REFERENCES "Author Base" ( Author_ID )
+ BOOK_ID   bigint NOT NULL,
+ AUTHOR_ID bigint NOT NULL,
+ CONSTRAINT PK_40 PRIMARY KEY ( BOOK_ID, AUTHOR_ID ),
+ CONSTRAINT FK_34 FOREIGN KEY ( BOOK_ID ) REFERENCES "BOOK" ( BOOK_ID ),
+ CONSTRAINT FK_37 FOREIGN KEY ( AUTHOR_ID ) REFERENCES "AUTHORS_BASE" ( AUTHOR_ID )
 );
 
-CREATE INDEX FK_36 ON "Book-Authors"
+CREATE INDEX FK_36 ON "BOOK_AUTHORS"
 (
- Book_ID
+ BOOK_ID
 );
 
-CREATE INDEX FK_39 ON "Book-Authors"
+CREATE INDEX FK_39 ON "BOOK_AUTHORS"
 (
- Author_ID
+ AUTHOR_ID
 );
 
--- ************************************** "Genres Base"
+-- ************************************** "GENRES_BASE"
 
-CREATE TABLE "Genres Base"
+CREATE TABLE "GENRES_BASE"
 (
- Genre_ID   numeric(18,0) NOT NULL,
- Genre_Name varchar(30) NOT NULL,
- CONSTRAINT PK_10 PRIMARY KEY ( Genre_ID )
+ GENRE_ID   bigint NOT NULL,
+ GENRE_NAME varchar NOT NULL,
+ CONSTRAINT PK_10 PRIMARY KEY ( GENRE_ID )
 );
 
--- ************************************** "Book-Genres"
+-- ************************************** "BOOK_GENRES"
 
-CREATE TABLE "Book-Genres"
+CREATE TABLE "BOOK_GENRES"
 (
- Book_ID  numeric(18,0) NOT NULL,
- Genre_ID numeric(18,0) NOT NULL,
- CONSTRAINT PK_14 PRIMARY KEY ( Book_ID, Genre_ID ),
- CONSTRAINT FK_20 FOREIGN KEY ( Book_ID ) REFERENCES Book ( Book_ID ),
- CONSTRAINT FK_23 FOREIGN KEY ( Genre_ID ) REFERENCES "Genres Base" ( Genre_ID )
+ BOOK_ID  bigint NOT NULL,
+ GENRE_ID bigint NOT NULL,
+ CONSTRAINT PK_14 PRIMARY KEY ( BOOK_ID, GENRE_ID ),
+ CONSTRAINT FK_20 FOREIGN KEY ( BOOK_ID ) REFERENCES "BOOK" ( BOOK_ID ),
+ CONSTRAINT FK_23 FOREIGN KEY ( GENRE_ID ) REFERENCES "GENRES_BASE" ( GENRE_ID )
 );
 
-CREATE INDEX FK_22 ON "Book-Genres"
+CREATE INDEX FK_22 ON "BOOK_GENRES"
 (
- Book_ID
+ BOOK_ID
 );
 
-CREATE INDEX FK_25 ON "Book-Genres"
+CREATE INDEX FK_25 ON "BOOK_GENRES"
 (
- Genre_ID
+ GENRE_ID
 );
 
--- ************************************** "User"
+-- ************************************** "USERS"
 
-CREATE TABLE "User"
+CREATE TABLE "USERS"
 (
- User_ID           numeric(18,0) NOT NULL,
- User_Name         varchar(30) NOT NULL,
- User_Surname      varchar(30) NOT NULL,
- User_Second_Name  varchar(30) NULL,
- User_Phone_Number int NOT NULL,
- CONSTRAINT PK_43 PRIMARY KEY ( User_ID )
+ USER_ID           bigint NOT NULL,
+ USER_NAME         varchar NOT NULL,
+ USER_SURNAME      varchar NOT NULL,
+ USER_SECOND_NAME  varchar NULL,
+ USER_PHONE_NUMBER bigint NOT NULL,
+ CONSTRAINT PK_43 PRIMARY KEY ( USER_ID )
 );
 
--- ************************************** "Book Order"
+-- ************************************** "BOOK_ORDER"
 
-CREATE TABLE "Book Order"
+CREATE TABLE "BOOK_ORDER"
 (
- Oreder_ID        numeric(18,0) NOT NULL,
- User_ID          numeric(18,0) NOT NULL,
- Book_ID          numeric(18,0) NOT NULL,
- Order_Start_Date date NOT NULL,
- Order_End_Date   date NOT NULL,
- CONSTRAINT PK_50 PRIMARY KEY ( Oreder_ID ),
- CONSTRAINT FK_53 FOREIGN KEY ( User_ID ) REFERENCES "User" ( User_ID ),
- CONSTRAINT FK_56 FOREIGN KEY ( Book_ID ) REFERENCES Book ( Book_ID )
+ ORDER_ID         bigint NOT NULL,
+ USER_ID          bigint NOT NULL,
+ BOOK_ID          bigint NOT NULL,
+ ORDER_START_DATE date NOT NULL,
+ ORDER_END_DATE   date NOT NULL,
+ CONSTRAINT PK_50 PRIMARY KEY ( ORDER_ID ),
+ CONSTRAINT FK_53 FOREIGN KEY ( USER_ID ) REFERENCES "USERS" ( USER_ID ),
+ CONSTRAINT FK_56 FOREIGN KEY ( BOOK_ID ) REFERENCES "BOOK" ( BOOK_ID )
 );
 
-CREATE INDEX FK_55 ON "Book Order"
+CREATE INDEX FK_55 ON "BOOK_ORDER"
 (
- User_ID
+ USER_ID
 );
 
-CREATE INDEX FK_58 ON "Book Order"
+CREATE INDEX FK_58 ON "BOOK_ORDER"
 (
- Book_ID
+ BOOK_ID
 );

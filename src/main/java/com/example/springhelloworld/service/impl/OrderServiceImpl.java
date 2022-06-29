@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public BookOrder update(BookOrder order) {
-        BookOrder updateOrder = orderRepository.findByOrderId((long) order.getOrderId());
+        BookOrder updateOrder = orderRepository.findByOrderId(order.getOrderId());
         updateOrder.setOrderStartDate(order.getOrderStartDate());
         updateOrder.setOrderEndDate(order.getOrderEndDate());
 

@@ -9,17 +9,17 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="Book")
+@Table(name="BOOK")
 public class Book {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="BOOK_ID", nullable=false, unique=true)
     public Long bookId;
 
-    @Column(name="BOOK_NAME", nullable=false, unique=false)
+    @Column(name="BOOK_NAME", nullable=false)
     private char bookName;
-    @Column(name="BOOK_PUBLISH_DATE", nullable=false, unique=false)
+    @Column(name="BOOK_PUBLISH_DATE", nullable=false)
     private int bookPublishDate;
 
     @ManyToMany(mappedBy = "bookAuthors")
