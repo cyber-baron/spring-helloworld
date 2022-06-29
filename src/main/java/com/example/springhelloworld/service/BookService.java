@@ -7,9 +7,7 @@ public interface BookService {
     Book getBook(Long bookId);
 
     Book findById(Long bookId);
-
     Book findByIdNativeQuery(Long bookId);
-
     Book findByIdQuery(Long bookId);
 
     Book create(Book book);
