@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name="GENRES_BASE")
+@Table(name="GENRE")
 public class GenresBase {
 
     @Id
@@ -21,7 +21,7 @@ public class GenresBase {
     @ManyToMany
     @JoinTable
             (
-                name = "BOOK_GENRES",
+                name = "BOOK_GENRE",
                 joinColumns = @JoinColumn(name = "GENRE_ID", referencedColumnName = "GENRE_ID"),
                 inverseJoinColumns = @JoinColumn(name = "BOOK_ID", referencedColumnName = "BOOK_ID")
             )

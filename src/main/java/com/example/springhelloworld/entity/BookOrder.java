@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name="BOOK_ORDER")
+@Table(name="ORDER")
 public class BookOrder {
 
     @Id
@@ -20,7 +20,7 @@ public class BookOrder {
     private String orderEndDate;
 
     @ManyToOne
-    @JoinColumn(name = "BOOK_ID")
+    @JoinColumn(name = "BOOK_ID", nullable=false)
     private Book book;
 
     @ManyToOne
