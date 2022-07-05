@@ -4,10 +4,13 @@ import com.example.springhelloworld.entity.Book;
 import com.example.springhelloworld.repository.BookRepository;
 import com.example.springhelloworld.service.BookService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
@@ -21,6 +24,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findById(Long bookId) {
+        log.info("findById. bookId: [ {} ]", bookId);
         return bookRepository.findById(bookId).orElseThrow(() -> new EntityNotFoundException("Книга с идентификатором: " + bookId + " не найдена"));
     }
 

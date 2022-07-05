@@ -24,6 +24,6 @@ public class User {
     @Column(name="USER_PHONE_NUMBER", nullable=false)
     private int userPhoneNumber;
 
-    @OneToMany (targetEntity = BookOrder.class, cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany (targetEntity = com.example.springhelloworld.entity.BookOrder.class, cascade = CascadeType.ALL, mappedBy = "user")
     private List<BookOrder> bookOrdersList;
 }
