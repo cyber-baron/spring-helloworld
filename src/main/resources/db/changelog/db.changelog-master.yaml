@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 1
-      author: sab
+      author: baron
       changes:
         -
         # table Author
@@ -31,6 +31,28 @@ databaseChangeLog:
               - column:
                   name: AUTHOR_BIRTH_DATE
                   type: int
+                  constraints:
+                    nullable: false
+
+        # table Author
+        - createTable:
+            tableName: ORDERS
+            columns:
+              - column:
+                  name: ORDER_ID
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: ORDER_START
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ORDER_END
+                  type: varchar
                   constraints:
                     nullable: false
 
@@ -76,7 +98,7 @@ databaseChangeLog:
   # add ForeignKey book_author
   - changeSet:
       id: addForeignKeyConstraint-BOOK_ID
-      author: sab
+      author: baron
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: BOOK_ID
@@ -94,7 +116,7 @@ databaseChangeLog:
   # add ForeignKey book_author
   - changeSet:
       id: addForeignKeyConstraint-AUTHOR_ID
-      author: sab
+      author: baron
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: AUTHOR_ID
@@ -106,7 +128,7 @@ databaseChangeLog:
             onUpdate: RESTRICT
             referencedColumnNames: AUTHOR_ID
             referencedTableCatalogName: jsab
-            referencedTableName: category
+            referencedTableName: AUTHOR
             referencedTableSchemaName: public
 
         # table Genre
@@ -128,7 +150,7 @@ databaseChangeLog:
 
         # table Book_Genre
         - createTable:
-            tableName: BOOK_AUTHOR
+            tableName: BOOK_GENRE
             columns:
               - column:
                   name: BOOK_ID
@@ -145,26 +167,8 @@ databaseChangeLog:
 
   # add ForeignKey book_genre
   - changeSet:
-      id: addForeignKeyConstraint-BOOK_ID
-      author: sab
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: BOOK_ID
-            baseTableCatalogName: jsab
-            baseTableName: BOOK_GENRE
-            baseTableSchemaName: public
-            constraintName: operation_category_BOOK_ID_fkey
-            onDelete: CASCADE
-            onUpdate: RESTRICT
-            referencedColumnNames: BOOK_ID
-            referencedTableCatalogName: jsab
-            referencedTableName: BOOK
-            referencedTableSchemaName: public
-
-  # add ForeignKey book_genre
-  - changeSet:
       id: addForeignKeyConstraint-GENRE_ID
-      author: sab
+      author: baron
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: GENRE_ID
@@ -176,30 +180,26 @@ databaseChangeLog:
             onUpdate: RESTRICT
             referencedColumnNames: GENRE_ID
             referencedTableCatalogName: jsab
-            referencedTableName: category
+            referencedTableName: GENRE
             referencedTableSchemaName: public
 
-        # table Order
-        - createTable:
-            tableName: ORDER
-            columns:
-              - column:
-                  name: ORDER_ID
-                  type: bigint
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: ORDER_START_DATE
-                  type: varchar
-                  constraints:
-                    nullable: false
-              - column:
-                  name: ORDER_END_DATE
-                  type: varchar
-                  constraints:
-                    nullable: false
+  # add ForeignKey book_genre
+  - changeSet:
+      id: addForeignKeyConstraint-BOOK_ID2
+      author: baron
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: BOOK_ID
+            baseTableCatalogName: jsab
+            baseTableName: BOOK_GENRE
+            baseTableSchemaName: public
+            constraintName: operation_category_BOOK_ID_fkey2
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: BOOK_ID
+            referencedTableCatalogName: jsab
+            referencedTableName: BOOK
+            referencedTableSchemaName: public
 
         # table Users
         - createTable:
@@ -231,38 +231,20 @@ databaseChangeLog:
                   constraints:
                     nullable: false
 
-  # add ForeignKey order
-  - changeSet:
-      id: addForeignKeyConstraint-BOOK_ID
-      author: sab
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: BOOK_ID
-            baseTableCatalogName: jsab
-            baseTableName: ORDER
-            baseTableSchemaName: public
-            constraintName: operation_from_BOOK_ID_fkey
-            onDelete: CASCADE
-            onUpdate: RESTRICT
-            referencedColumnNames: BOOK_ID
-            referencedTableCatalogName: jsab
-            referencedTableName: account
-            referencedTableSchemaName: public
-
-  # add ForeignKey order
+  # add ForeignKey orders
   - changeSet:
       id: addForeignKeyConstraint-USER_ID
-      author: sab
+      author: baron
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: USER_ID
             baseTableCatalogName: jsab
-            baseTableName: ORDER
+            baseTableName: ORDERS
             baseTableSchemaName: public
             constraintName: operation_from_USER_ID_fkey
             onDelete: CASCADE
             onUpdate: RESTRICT
             referencedColumnNames: USER_ID
             referencedTableCatalogName: jsab
-            referencedTableName: account
+            referencedTableName: ORDERS
             referencedTableSchemaName: public
