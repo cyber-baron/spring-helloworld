@@ -6,90 +6,90 @@ databaseChangeLog:
         -
         # table Author
         - createTable:
-            tableName: AUTHOR
+            tableName: "AUTHOR"
             columns:
               - column:
-                  name: AUTHOR_ID
+                  name: "AUTHOR_ID"
                   type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: AUTHOR_NAME
+                  name: "AUTHOR_NAME"
                   type: varchar
                   constraints:
                     nullable: false
               - column:
-                  name: AUTHOR_SURNAME
+                  name: "AUTHOR_SURNAME"
                   type: varchar
                   constraints:
                     nullable: false
               - column:
-                  name: AUTHOR_SECOND_NAME
+                  name: "AUTHOR_SECOND_NAME"
                   type: varchar
               - column:
-                  name: AUTHOR_BIRTH_DATE
+                  name: "AUTHOR_BIRTH_DATE"
                   type: int
                   constraints:
                     nullable: false
 
         # table Author
         - createTable:
-            tableName: ORDERS
+            tableName: "ORDERS"
             columns:
               - column:
-                  name: ORDER_ID
+                  name: "ORDER_ID"
                   type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: ORDER_START
+                  name: "ORDER_START"
                   type: varchar
                   constraints:
                     nullable: false
               - column:
-                  name: ORDER_END
+                  name: "ORDER_END"
                   type: varchar
                   constraints:
                     nullable: false
 
         # table Book
         - createTable:
-            tableName: BOOK
+            tableName: "BOOK"
             columns:
               - column:
-                  name: BOOK_ID
+                  name: "BOOK_ID"
                   type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: BOOK_NAME
+                  name: "BOOK_NAME"
                   type: varchar
                   constraints:
                     nullable: false
               - column:
-                  name: BOOK_PUBLISH_DATE
+                  name: "BOOK_PUBLISH_DATE"
                   type: int
                   constraints:
                     nullable: false
 
         # table Book_Author
         - createTable:
-            tableName: BOOK_AUTHOR
+            tableName: "BOOK_AUTHOR"
             columns:
               - column:
-                  name: BOOK_ID
+                  name: "BOOK_ID"
                   type: bigint
                   autoIncrement: false
                   constraints:
                     nullable: false
               - column:
-                  name: AUTHOR_ID
+                  name: "AUTHOR_ID"
                   type: bigint
                   autoIncrement: false
                   constraints:
@@ -101,16 +101,16 @@ databaseChangeLog:
       author: baron
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: BOOK_ID
+            baseColumnNames: "BOOK_ID"
             baseTableCatalogName: jsab
-            baseTableName: BOOK_AUTHOR
+            baseTableName: "BOOK_AUTHOR"
             baseTableSchemaName: public
             constraintName: operation_category_BOOK_ID_fkey
             onDelete: CASCADE
             onUpdate: RESTRICT
-            referencedColumnNames: BOOK_ID
+            referencedColumnNames: "BOOK_ID"
             referencedTableCatalogName: jsab
-            referencedTableName: BOOK
+            referencedTableName: "BOOK"
             referencedTableSchemaName: public
 
   # add ForeignKey book_author
@@ -119,47 +119,47 @@ databaseChangeLog:
       author: baron
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: AUTHOR_ID
+            baseColumnNames: "AUTHOR_ID"
             baseTableCatalogName: jsab
-            baseTableName: BOOK_AUTHOR
+            baseTableName: "BOOK_AUTHOR"
             baseTableSchemaName: public
             constraintName: operation_category_AUTHOR_ID_fkey
             onDelete: CASCADE
             onUpdate: RESTRICT
-            referencedColumnNames: AUTHOR_ID
+            referencedColumnNames: "AUTHOR_ID"
             referencedTableCatalogName: jsab
-            referencedTableName: AUTHOR
+            referencedTableName: "AUTHOR"
             referencedTableSchemaName: public
 
         # table Genre
         - createTable:
-            tableName: GENRE
+            tableName: "GENRE"
             columns:
               - column:
-                  name: GENRE_ID
+                  name: "GENRE_ID"
                   type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: GENRE_NAME
+                  name: "GENRE_NAME"
                   type: varchar
                   constraints:
                     nullable: false
 
         # table Book_Genre
         - createTable:
-            tableName: BOOK_GENRE
+            tableName: "BOOK_GENRE"
             columns:
               - column:
-                  name: BOOK_ID
+                  name: "BOOK_ID"
                   type: bigint
                   autoIncrement: false
                   constraints:
                     nullable: false
               - column:
-                  name: GENRE_ID
+                  name: "GENRE_ID"
                   type: bigint
                   autoIncrement: false
                   constraints:
@@ -171,16 +171,16 @@ databaseChangeLog:
       author: baron
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: GENRE_ID
+            baseColumnNames: "GENRE_ID"
             baseTableCatalogName: jsab
-            baseTableName: BOOK_GENRE
+            baseTableName: "BOOK_GENRE"
             baseTableSchemaName: public
             constraintName: operation_category_GENRE_ID_fkey
             onDelete: CASCADE
             onUpdate: RESTRICT
-            referencedColumnNames: GENRE_ID
+            referencedColumnNames: "GENRE_ID"
             referencedTableCatalogName: jsab
-            referencedTableName: GENRE
+            referencedTableName: "GENRE"
             referencedTableSchemaName: public
 
   # add ForeignKey book_genre
@@ -189,62 +189,44 @@ databaseChangeLog:
       author: baron
       changes:
         - addForeignKeyConstraint:
-            baseColumnNames: BOOK_ID
+            baseColumnNames: "BOOK_ID"
             baseTableCatalogName: jsab
-            baseTableName: BOOK_GENRE
+            baseTableName: "BOOK_GENRE"
             baseTableSchemaName: public
             constraintName: operation_category_BOOK_ID_fkey2
             onDelete: CASCADE
             onUpdate: RESTRICT
-            referencedColumnNames: BOOK_ID
+            referencedColumnNames: "BOOK_ID"
             referencedTableCatalogName: jsab
-            referencedTableName: BOOK
+            referencedTableName: "BOOK"
             referencedTableSchemaName: public
 
         # table Users
         - createTable:
-            tableName: USERS
+            tableName: "USERS"
             columns:
               - column:
-                  name: USER_ID
+                  name: "USER_ID"
                   type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: USER_NAME
+                  name: "USER_NAME"
                   type: varchar
                   constraints:
                     nullable: false
               - column:
-                  name: USER_SURNAME
+                  name: "USER_SURNAME"
                   type: varchar
                   constraints:
                     nullable: false
               - column:
-                  name: USER_SECOND_NAME
+                  name: "USER_SECOND_NAME"
                   type: varchar
               - column:
-                  name: USER_PHONE_NUMBER
+                  name: "USER_PHONE_NUMBER"
                   type: int
                   constraints:
                     nullable: false
-
-  # add ForeignKey orders
-  - changeSet:
-      id: addForeignKeyConstraint-USER_ID
-      author: baron
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: USER_ID
-            baseTableCatalogName: jsab
-            baseTableName: ORDERS
-            baseTableSchemaName: public
-            constraintName: operation_from_USER_ID_fkey
-            onDelete: CASCADE
-            onUpdate: RESTRICT
-            referencedColumnNames: USER_ID
-            referencedTableCatalogName: jsab
-            referencedTableName: ORDERS
-            referencedTableSchemaName: public
